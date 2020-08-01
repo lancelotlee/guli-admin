@@ -85,6 +85,27 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/subject',
+    component: Layout,
+    redirect: '/subject/list',
+    name: '课程分类管理',
+    meta: { title: '课程分类管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'table',
+        name: '课程分类列表',
+        component: () => import('@/views/edu/teacher/list'),
+        meta: { title: '课程分类列表', icon: 'table' }
+      },
+      {
+        path: 'save',
+        name: '添加课程分类',
+        component: () => import('@/views/edu/teacher/save'),
+        meta: { title: '添加课程分类', icon: 'tree' }
+      }
+    ]
+  },
 
   {
     path: '/example',
@@ -151,23 +172,15 @@ export const constantRoutes = [
             children: [
               {
                 path: 'menu1-2-1',
-<<<<<<< HEAD
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-=======
                 component: () =>
                   import('@/views/nested/menu1/menu1-2/menu1-2-1'),
->>>>>>> d7b779a... 集成图片上传预览控件
                 name: 'Menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-<<<<<<< HEAD
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-=======
                 component: () =>
                   import('@/views/nested/menu1/menu1-2/menu1-2-2'),
->>>>>>> d7b779a... 集成图片上传预览控件
                 name: 'Menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
@@ -205,20 +218,12 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-<<<<<<< HEAD
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
-=======
 const createRouter = () =>
   new Router({
     // mode: 'history', // require service support
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes
   })
->>>>>>> d7b779a... 集成图片上传预览控件
 
 const router = createRouter()
 
