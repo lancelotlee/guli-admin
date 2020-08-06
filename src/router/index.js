@@ -116,14 +116,35 @@ export const constantRoutes = [
       {
         path: 'table',
         name: '课程列表',
-        component: () => import('@/views/edu/subject/list'),
+        component: () => import('@/views/edu/course/list'),
         meta: { title: '课程列表', icon: 'table' }
       },
       {
-        path: 'save',
+        path: 'info',
         name: '添加分类',
-        component: () => import('@/views/edu/subject/save'),
+        component: () => import('@/views/edu/course/info'),
         meta: { title: '添加分类', icon: 'tree' }
+      },
+      {
+        path: 'info/:id',
+        name: 'EduCourseInfoEdit',
+        component: () => import('@/views/edu/course/info'),
+        meta: { title: '编辑课程基本信息', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'chapter/:id',
+        name: 'EduCourseChapterEdit',
+        component: () => import('@/views/edu/course/chapter'),
+        meta: { title: '编辑课程大纲', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'publish/:id',
+        name: 'EduCoursePublishEdit',
+        component: () => import('@/views/edu/course/publish'),
+        meta: { title: '发布课程', noCache: true },
+        hidden: true
       }
     ]
   },
