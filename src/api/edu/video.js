@@ -12,5 +12,11 @@ export default {
       url: `/eduservice/edu-video/${videoId}`,
       method: 'delete'
     })
+  },
+  deleteAliVideo(videoSourceId) {
+    return request({
+      url: `/eduvod/video/removeVideo/${videoSourceId}`,
+      method: 'delete'
+    })
   }
 }

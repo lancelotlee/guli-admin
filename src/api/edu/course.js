@@ -37,5 +37,18 @@ export default {
       url: `/eduservice/edu-course/publishCourse/${courseId}`,
       method: 'put'
     })
+  },
+  getCourseList(current, limit, courseQuery) {
+    return request({
+      url: `/eduservice/edu-course/getCourseList/${current}/${limit}`,
+      method: 'post',
+      data: courseQuery
+    })
+  },
+  deleteCourse(courseId) {
+    return request({
+      url: `/eduservice/edu-course/deleteCourse/${courseId}`,
+      method: 'delete'
+    })
   }
 }
