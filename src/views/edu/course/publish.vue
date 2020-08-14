@@ -65,7 +65,7 @@ export default {
           type: 'success',
           message: '发布成功!'
         })
-        this.$router.push({ path: '/course/list' })
+        this.$router.push({ path: '/course/table' })
       })
     }
   }

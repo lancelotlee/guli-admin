@@ -170,6 +170,8 @@ export default {
       this.video.free = 0
       this.video.chapterId = chapterId
       this.video.courseId = this.courseId
+      this.video.videoSourceId = ''
+      this.video.videoOriginalName = ''
     },
     saveOrUpdateVideo() {
       this.addVideo()
