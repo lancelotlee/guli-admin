@@ -10,24 +10,24 @@
     <el-button type="text" @click="openChapterDialog">添加章节</el-button>
     <!-- 章节 -->
     <ul class="chanpterList">
-      <li v-for="chapter in chapterAndVideos" :key="chapter.id">
+      <li v-for="chapter0 in chapterAndVideos" :key="chapter0.id">
         <p>
-          {{ chapter.title }}
+          {{ chapter0.title }}
           <span class="acts">
-            <el-button type="text" @click="openVideo(chapter.id)">添加课时</el-button>
-            <el-button style type="text" @click="openEditChapter(chapter.id)">编辑</el-button>
-            <el-button type="text" @click="removeChapter(chapter.id)">删除</el-button>
+            <el-button type="text" @click="openVideo(chapter0.id)">添加课时</el-button>
+            <el-button style type="text" @click="openEditChapter(chapter0.id)">编辑</el-button>
+            <el-button type="text" @click="removeChapter(chapter0.id)">删除</el-button>
           </span>
         </p>
 
         <!-- 视频 -->
         <ul class="chanpterList videoList">
-          <li v-for="video in chapter.children" :key="video.id">
+          <li v-for="video0 in chapter0.children" :key="video0.id">
             <p>
-              {{ video.title }}
+              {{ video0.title }}
               <span class="acts">
                 <el-button type="text">编辑</el-button>
-                <el-button type="text" @click="removeVideo(video.id)">删除</el-button>
+                <el-button type="text" @click="removeVideo(video0.id)">删除</el-button>
               </span>
             </p>
           </li>
@@ -102,8 +102,8 @@
   </div>
 </template>
 <script>
-import chapter from '@/api/edu/chapter'
-import video from '@/api/edu/video'
+import chapterApi from '@/api/edu/chapter'
+import videoApi from '@/api/edu/video'
 export default {
   data() {
     return {
@@ -152,7 +152,7 @@ export default {
       return this.$confirm(`确定移除 ${file.name}？`)
     },
     handleVodRemove(file, fileList) {
-      video.deleteAliVideo(this.video.videoSourceId).then((response) => {
+      videoApi.deleteAliVideo(this.video.videoSourceId).then((response) => {
         this.video.videoSourceId = ''
         this.video.videoOriginalName = ''
         this.fileList = []
@@ -177,7 +177,7 @@ export default {
       this.addVideo()
     },
     addVideo() {
-      video.addVideo(this.video).then((response) => {
+      videoApi.addVideo(this.video).then((response) => {
         this.dialogVideoFormVisible = false
         this.$message({
           type: 'success',
@@ -193,7 +193,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          video
+          videoApi
             .deleteVideo(videoId)
             .then(() => {
               this.getChapterAndVideo()
@@ -226,13 +226,13 @@ export default {
     },
     openEditChapter(chapterId) {
       this.dialogChapterFormVisible = true
-      chapter.getChapterInfo(chapterId).then((response) => {
+      chapterApi.getChapterInfo(chapterId).then((response) => {
         this.chapter = response.data.chapter
       })
     },
     addChapter() {
       this.chapter.courseId = this.courseId
-      chapter.addChapter(this.chapter).then((response) => {
+      chapterApi.addChapter(this.chapter).then((response) => {
         this.dialogChapterFormVisible = false
         this.$message({
           type: 'success',
@@ -242,7 +242,7 @@ export default {
       })
     },
     updateChapter() {
-      chapter.updateChapter(this.chapter).then((response) => {
+      chapterApi.updateChapter(this.chapter).then((response) => {
         this.dialogChapterFormVisible = false
         this.$message({
           type: 'success',
@@ -265,7 +265,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          chapter
+          chapterApi
             .deleteChapter(chapterId)
             .then(() => {
               this.getChapterAndVideo()
@@ -290,7 +290,7 @@ export default {
         })
     },
     getChapterAndVideo() {
-      chapter.getChapterAndVideo(this.courseId).then((response) => {
+      chapterApi.getChapterAndVideo(this.courseId).then((response) => {
         this.chapterAndVideos = response.data.items
       })
     },
